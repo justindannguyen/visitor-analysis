@@ -1,0 +1,20 @@
+{
+  "name": "visitor-analysis-source",
+  "version": "1.0.0",
+  "description": "Visitor analysis",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "source": "node ./source/index.js",
+    "process": "node ./process/index.js"
+  },
+  "author": "tuan3.nguyen@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^1.2.7",
+    "blob": "0.0.5",
+    "canvas": "^2.6.0",
+    "face-api.js": "^0.20.1",
+    "kafka-node": "^4.1.3"
+  }
+}
