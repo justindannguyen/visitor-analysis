@@ -1,12 +1,13 @@
+const kafkaHost = process.env.KAFKA_HOST || '192.168.1.11:9092'
+const kafkaTopic = process.env.TOPIC || 'visitor_faces'
+
 var kafka = require('kafka-node'),
   Producer = kafka.Producer,
   KeyedMessage = kafka.KeyedMessage,
-  client = new kafka.KafkaClient({ kafkaHost: '192.168.1.11:9092' }),
+  client = new kafka.KafkaClient({ kafkaHost }),
   producer = new Producer(client);
 
 let ready = false;
-
-const TOPIC = 'visitor_faces'
 
 producer.on('ready', function () {
   ready = true
@@ -25,7 +26,7 @@ function publish(payloads) {
     console.log('Publisher is not ready yet')
   } else if (payloads.length > 0) {
     const messages = payloads.map(payload => new KeyedMessage(id(), JSON.stringify(payload)))
-    producer.send([{ topic: TOPIC, messages }], publishCallback)
+    producer.send([{ topic: kafkaTopic, messages }], publishCallback)
     console.log(`Published ${messages.length} items`)
   }
 }
