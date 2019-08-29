@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.context.annotation.Profile;
-import org.springframework.messaging.handler.annotation.SendTo;
 
 import com.justin.visitor.aggregation.MqttService;
 import com.justin.visitor.aggregation.VisitorAggregationProcessor;
@@ -52,8 +51,8 @@ public class StreamConfig {
   @Autowired
   private MqttService mqttService;
 
-  @StreamListener(VisitorAggregationProcessor.INPUT)
-  @SendTo(VisitorAggregationProcessor.OUTPUT)
+  // @StreamListener(VisitorAggregationProcessor.INPUT)
+  // @SendTo(VisitorAggregationProcessor.OUTPUT)
   public KStream<String, Map<String, Integer>> process(
       final KStream<String, String> detectionStream) {
     final Materialized<String, Map<String, Integer>, KeyValueStore<Bytes, byte[]>> materializes =

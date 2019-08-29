@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.justin</groupId>
-	<artifactId>visitor-aggregation</artifactId>
+	<artifactId>visitor-analysis-aggregation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>visitor-aggregation</name>
+	<name>visitor-analysis-aggregation</name>
 
 	<properties>
 		<java.version>1.8</java.version>

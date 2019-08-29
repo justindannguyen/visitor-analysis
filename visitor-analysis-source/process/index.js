@@ -17,7 +17,7 @@ var kafka = require('kafka-node'),
       groupId: kafkaGroup,
       encoding: 'utf8',
       keyEncoding: 'utf8',
-      fromOffset: true
+      fromOffset: false
     }
   ),
   producer = new Producer(client);
