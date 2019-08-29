@@ -11,7 +11,6 @@ async function run() {
     try {
         const capturedImage = await canvas.loadImage('http://service:smartcity123@192.168.1.50/snap.jpg?JpegSize=XL');
         const facesMeta = await detector.detectAndAnalyzeInfo(capturedImage)
-        console.log(facesMeta)
         publisher.publish(facesMeta.map(face => toPayload(capturedImage, face)))
     }
     catch (err) {
