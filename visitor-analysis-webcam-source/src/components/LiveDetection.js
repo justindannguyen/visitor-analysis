@@ -9,8 +9,7 @@ class LiveDetection extends Component {
     faceapi.nets.ageGenderNet.loadFromUri('/models')
     faceapi.nets.faceExpressionNet.loadFromUri('/models')
     if (navigator.getUserMedia) {
-      navigator.getUserMedia(
-        { video: true, audio: false },
+      navigator.getUserMedia({ video: true, audio: false },
         stream => this.video.srcObject = stream,
         err => console.error(err)
       )
@@ -61,14 +60,13 @@ class LiveDetection extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="liveCam" >
         <video id="video"
           onPlay={this.onVideoPlayed}
           ref={this.setRefVideo}
           width="720"
           height="560"
-          autoPlay
-          muted />
+          autoPlay muted />
       </div>
     );
   }
