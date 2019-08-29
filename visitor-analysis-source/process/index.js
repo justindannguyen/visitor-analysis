@@ -1,21 +1,23 @@
-const TOPIC = 'visitor_faces'
-const OUT_TOPIC = 'visitor_analysis_info'
-
 var processApi = require('./processApi.js')
 var base64 = require('./../utils/base64')
+const kafkaHost = process.env.KAFKA_HOST || '192.168.1.11:9092'
+const kafkaTopic = process.env.TOPIC || 'visitor_faces'
+const kafkaOutTopic = process.env.OUT_TOPIC || 'visitor_analysis_info'
+const kafkaGroup = process.env.GROUP || 'visitor-face-recogition-group'
+
 var kafka = require('kafka-node'),
   Consumer = kafka.Consumer,
   Producer = kafka.Producer,
   KeyedMessage = kafka.KeyedMessage,
-  client = new kafka.KafkaClient({ kafkaHost: '192.168.1.11:9092' }),
+  client = new kafka.KafkaClient({ kafkaHost }),
   consumer = new Consumer(
     client,
-    [{ topic: TOPIC }],
+    [{ topic: kafkaTopic }],
     {
-      groupId: 'visitor-face-recogition-group',
+      groupId: kafkaGroup,
       encoding: 'utf8',
       keyEncoding: 'utf8',
-      fromOffset: false
+      fromOffset: true
     }
   ),
   producer = new Producer(client);
@@ -37,7 +39,7 @@ function publish(key, payload) {
     return
   }
   const messages = [new KeyedMessage(key, JSON.stringify(payload))]
-  producer.send([{ topic: OUT_TOPIC, messages }], publishCallback)
+  producer.send([{ topic: kafkaOutTopic, messages }], publishCallback)
   console.log(`Published ${key}`)
 }
 

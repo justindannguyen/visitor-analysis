@@ -1,4 +1,4 @@
-FROM FROM node:12.9.1
+FROM node:12.9
 LABEL maintainer Justin Nguyen <tuan3.nguyen@gmail.com>
 
 # Create app directory
@@ -19,5 +19,3 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Bundle app source
 COPY . .
-
-ENTRYPOINT ["npm", "run", "source"]
