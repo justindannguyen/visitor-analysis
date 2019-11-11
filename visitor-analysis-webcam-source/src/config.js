@@ -3,3 +3,7 @@ export const mqttConfig = {
   options: {},
   analysisTopic: 'visitor/analysis'
 }
+
+export const endpointConfig = {
+  server: "http://192.168.1.11:7000"
+}

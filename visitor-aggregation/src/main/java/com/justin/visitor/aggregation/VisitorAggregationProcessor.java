@@ -4,6 +4,8 @@
 package com.justin.visitor.aggregation;
 
 import org.springframework.cloud.stream.annotation.Input;
+import org.springframework.cloud.stream.annotation.Output;
+import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.SubscribableChannel;
 
 /**
@@ -21,6 +23,9 @@ public interface VisitorAggregationProcessor {
   //
   // @Output(OUTPUT)
   // KStream<?, ?> dayAggregationOutput();
+
+  @Output("kafkaOutput")
+  MessageChannel kafkaOutput();
 
   @Input(MQTT_SINK_INPUT)
   SubscribableChannel mqttSinkInput();

@@ -139,7 +139,7 @@
 							</execution>
 						</executions>
 						<configuration>
-							<repository>justindannguyen/visitor-aggregation</repository>
+							<repository>justindannguyen/visitor-analysis-aggregation</repository>
 							<tag>${project.version}</tag>
 							<buildArgs>
 								<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
