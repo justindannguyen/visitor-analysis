@@ -4,12 +4,13 @@ var faceapi = require('face-api.js');
 
 const currentModel = faceapi.nets.ssdMobilenetv1
 const detectionOptions = new faceapi.SsdMobilenetv1Options({ minConfidence: 0.5 })
+const matcherThreshold = process.env.FACE_MATCHER_THRESHOLD || 0.5
 let faceMatcher
 let labelDescriptors
 let modelReady = false
 
 async function init() {
-  const referenceImage = await canvas.loadImage('http://192.168.1.11:51200/static/media/mr.tuan.dda953dd.jpg')
+  const referenceImage = await canvas.loadImage('https://justindannguyen.github.io/about/justin.jpeg')
 
   // patch nodejs environment, we need to provide an implementation of
   // HTMLCanvasElement and HTMLImageElement, additionally an implementation
@@ -27,10 +28,10 @@ async function init() {
     .withFaceLandmarks()
     .withFaceDescriptor()
   labelDescriptors = [
-    new faceapi.LabeledFaceDescriptors('Tuan', [ref.descriptor])
+    new faceapi.LabeledFaceDescriptors('Justin', [ref.descriptor])
   ]
 
-  faceMatcher = new faceapi.FaceMatcher(labelDescriptors, 0.5)
+  faceMatcher = new faceapi.FaceMatcher(labelDescriptors, matcherThreshold)
   modelReady = true
   // TODO load label from db
 }
